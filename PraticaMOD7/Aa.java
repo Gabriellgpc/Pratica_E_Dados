@@ -64,11 +64,14 @@ public class Aa{
 
   static Aa insere(Aa a,int i){
     if(a == null)return new Aa(i,R,null,null);
-    if(i > a.value)
+    if(i >= a.value){
       a.dir = insere(a.dir,i);
-    else
+    }
+    else{
       a.esq = insere(a.esq,i);
+    }
     rodeDir(a);
+    a.cor = N;
     rodeEsq(a);
     return a;
   }
@@ -117,11 +120,11 @@ public class Aa{
   static void teste4(){
     Aa a = new Aa(5,R,null,null);
     insere(a,1);
-    insereECorrigeRaiz(a,3);
-    // insere(a,9);
-    // insere(a,6);
-    // insere(a,11);
-    // insereECorrigeRaiz(a,8);
+    insere(a,3);
+    insere(a,9);
+    insere(a,6);
+    insere(a,11);
+    insereECorrigeRaiz(a,8);
     new Fenetre(a,"resultado");
   }
   public static void main (String [] args) {
