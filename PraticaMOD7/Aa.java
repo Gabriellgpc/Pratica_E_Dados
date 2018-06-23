@@ -117,17 +117,17 @@ public class Aa{
   static void teste4(){
     Aa a = new Aa(5,R,null,null);
     insere(a,1);
-    insere(a,3);
-    insere(a,9);
-    insere(a,6);
-    insere(a,11);
-    insereECorrigeRaiz(a,8);
+    insereECorrigeRaiz(a,3);
+    // insere(a,9);
+    // insere(a,6);
+    // insere(a,11);
+    // insereECorrigeRaiz(a,8);
     new Fenetre(a,"resultado");
   }
   public static void main (String [] args) {
     // teste1();
-    teste2();
+    // teste2();
     // teste3();
-    // teste4();
+    teste4();
   }
 }
