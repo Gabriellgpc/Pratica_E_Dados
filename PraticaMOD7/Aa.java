@@ -39,10 +39,18 @@ public class Aa{
   }
   //TODO rotacao para a direta apartir da Raiz a
   static void rodeDir(Aa a){
+    if(a == null)throw new Error("Rotacao invalida, arvore Vazia\n");
     if(a.esq.cor == N)return;
     Aa tmp = new Aa(a.value, a.cor, a.esq.dir, a.dir);
     a.copy(new Aa(a.esq.value, a.esq.cor, a.esq.esq, tmp));
-    new Fenetre(a,"A");
+  }
+  static void rodeEsq(Aa a){
+    if(a == null)throw new Error("Rotacao invalida, arvore Vazia\n");
+
+    if(a.dir.cor != R && a.dir.dir.cor != R)return;
+    Aa left = new Aa(a.value, a.cor, a.esq, a.dir.esq);
+    a.copy(new Aa(a.dir.value, a.dir.cor, left ,a.dir.dir));
+    a.dir.cor = N;
   }
 
   static void teste1(){
@@ -72,8 +80,23 @@ public class Aa{
     new Fenetre(a,new String("Pos rotação"));
   }
 
+  static void teste3(){
+    Aa a = new Aa (2, N,
+    new Aa (1, N, null, null),
+    new Aa (4, R,
+    new Aa (3, N, null, null),
+    new Aa (6, R,
+    new Aa (5, N, null, null),
+    new Aa (7, N, null, null))));
+
+    new Fenetre(a,new String("Pré rotação"));
+    rodeEsq(a);
+    new Fenetre(a,new String("Pos rotação"));
+  }
+
   public static void main (String [] args) {
     // teste1();
-    teste2();
+    // teste2();
+    teste3();
   }
 }
