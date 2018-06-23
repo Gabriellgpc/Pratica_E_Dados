@@ -1,7 +1,5 @@
-
 import java.awt.*;
 import java.awt.event.*;
-
 /**
  * @author C. Durr (2008), Luca Castelli Aleardi (INF421, 2013, Ecole Polytechnique) Provides methods for testing operations on ordered sets
  * (implementation based on binary search trees)
