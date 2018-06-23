@@ -14,6 +14,19 @@ public class Aa{
     esq = Esq;
     dir = Dir;
   }
+  Aa(Aa a){
+    this.value = a.value;
+    this.cor = a.cor;
+    this.dir = (a.dir == null)?null:a.dir;
+    this.esq = (a.esq == null)?null:a.esq;
+  }
+
+  void copy(Aa a){
+    this.value = a.value;
+    this.cor = a.cor;
+    this.dir = (a.dir == null)?null:a.dir;
+    this.esq = (a.esq == null)?null:a.esq;
+  }
 
   static String infixe(Aa a){
     if(a == null)return new String("");
@@ -28,7 +41,7 @@ public class Aa{
   static void rodeDir(Aa a){
     if(a.esq.cor == N)return;
     Aa tmp = new Aa(a.value, a.cor, a.esq.dir, a.dir);
-    a = new Aa(a.esq.value, a.esq.cor, a.esq.esq, tmp);
+    a.copy(new Aa(a.esq.value, a.esq.cor, a.esq.esq, tmp));
     new Fenetre(a,"A");
   }
 
