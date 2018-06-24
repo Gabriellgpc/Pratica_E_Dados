@@ -1,4 +1,3 @@
-
 public class Aa{
   static int R=0;
   static int N=1;
@@ -43,17 +42,19 @@ public class Aa{
     if(a.esq == null)return;
 
     if(a.esq.cor == N)return;
-    Aa right = new Aa(a.value, a.cor, a.esq.dir, a.dir);
+    Aa right = new Aa(a.value, R, a.esq.dir, a.dir);
     a.copy(new Aa(a.esq.value, a.esq.cor, a.esq.esq, right));
+    a.cor = N;
   }
   static void rodeEsq(Aa a){
     if(a == null)throw new Error("Rotacao invalida, arvore Vazia\n");
     if(a.dir == null || a.dir.dir == null)return;
 
-    if(a.dir.cor != R && a.dir.dir.cor != R)return;
-    Aa left = new Aa(a.value, a.cor, a.esq, a.dir.esq);
-    a.copy(new Aa(a.dir.value, a.dir.cor, left ,a.dir.dir));
-    a.dir.cor = N;
+    if(a.dir.cor == R && a.dir.dir.cor == R){
+      Aa left = new Aa(a.value, a.cor, a.esq, a.dir.esq);
+      a.copy(new Aa(a.dir.value, a.dir.cor, left ,a.dir.dir));
+      a.dir.cor = N;
+    }
   }
 
   static void insereECorrigeRaiz(Aa a,int i){
@@ -71,7 +72,6 @@ public class Aa{
       a.esq = insere(a.esq,i);
     }
     rodeDir(a);
-    a.cor = N;
     rodeEsq(a);
     return a;
   }
@@ -119,12 +119,16 @@ public class Aa{
 
   static void teste4(){
     Aa a = new Aa(5,R,null,null);
-    insere(a,1);
-    insere(a,3);
-    insere(a,9);
-    insere(a,6);
-    insere(a,11);
+
+    insereECorrigeRaiz(a,3);
+    insereECorrigeRaiz(a,9);
+    insereECorrigeRaiz(a,6);
+    insereECorrigeRaiz(a,11);
     insereECorrigeRaiz(a,8);
+    insereECorrigeRaiz(a, -8);
+    insereECorrigeRaiz(a, 4);
+    insereECorrigeRaiz(a, 14);
+    insereECorrigeRaiz(a, 20);
     new Fenetre(a,"resultado");
   }
   public static void main (String [] args) {
